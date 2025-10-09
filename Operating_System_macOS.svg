@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20" role="img" aria-label="Operating System: macOS">
+  <title>Operating System: macOS</title>
+  <linearGradient id="s" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="r">
+    <rect width="200" height="20" rx="3" fill="#fff"/>
+  </clipPath>
+  <g clip-path="url(#r)">
+    <rect width="110" height="20" fill="#555"/>
+    <rect x="110" width="90" height="20" fill="#999999"/> <!-- macOS grey -->
+    <rect width="200" height="20" fill="url(#s)"/>
+  </g>
+
+  <!-- Left text: Operating System -->
+  <g fill="#fff" text-anchor="middle" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110">
+    <text aria-hidden="true" x="550" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="900">Operating System</text>
+    <text x="550" y="140" transform="scale(.1)" fill="#fff" textLength="900">Operating System</text>
+  </g>
+
+  <!-- Apple logo, slightly moved up and left -->
+  <g transform="translate(115,0) scale(0.8)" fill="#fff" stroke="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5c0 -3 1.5 -4.5 4.5 -4.5 0 3 -1.5 4.5 -4.5 4.5Zm-1.327 1.633c-0.642 -0.295 -1.378 -0.633 -2.337 -0.633 -2.129 0 -5.323 2.129 -5.323 6.387C3.013 17.145 5.713 23 8.336 23c0.798 0 1.33 -0.266 1.863 -0.532 0.532 -0.266 1.064 -0.532 1.863 -0.532 0.798 0 1.463 0.266 2.129 0.532 0.665 0.266 1.33 0.532 2.129 0.532 1.835 0 3.707 -2.864 4.666 -6.044 -0.882 -0.32 -2.646 -1.971 -2.646 -4.069 0 -2.706 1.237 -3.923 1.855 -4.33C19.08 7.186 17.528 6.5 16.32 6.5c-0.96 0 -1.864 0.338 -2.654 0.633 -0.613 0.228 -1.157 0.432 -1.604 0.432 -0.448 0 -0.89 -0.204 -1.389 -0.432Z"/>
+  </g>
+
+  <!-- Right text: macOS -->
+  <g fill="#fff" text-anchor="start" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110" letter-spacing="-0.01em">
+    <text aria-hidden="true" x="1380" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="480">macOS</text>
+    <text x="1380" y="140" transform="scale(.1)" fill="#fff" textLength="480">macOS</text>
+  </g>
+</svg>
