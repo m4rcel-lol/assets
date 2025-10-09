@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20" role="img" aria-label="Operating System: Fedora">
+  <title>Operating System: Fedora</title>
+  <linearGradient id="s" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="r">
+    <rect width="200" height="20" rx="3" fill="#fff"/>
+  </clipPath>
+  <g clip-path="url(#r)">
+    <rect width="110" height="20" fill="#555"/>
+    <rect x="110" width="90" height="20" fill="#294172"/>
+    <rect width="200" height="20" fill="url(#s)"/>
+  </g>
+
+  <!-- Left text: Operating System -->
+  <g fill="#fff" text-anchor="middle" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110">
+    <text aria-hidden="true" x="550" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="900">Operating System</text>
+    <text x="550" y="140" transform="scale(.1)" fill="#fff" textLength="900">Operating System</text>
+  </g>
+
+  <!-- Fedora logo at start of blue section, slightly scaled and positioned -->
+  <g transform="translate(115,2) scale(0.75)" fill="#fff" stroke="none">
+    <path d="M12.001 0C5.376 0 0.008 5.369 0.004 11.992H0.002v9.287h0.002A2.726 2.726 0 0 0 2.73 24h9.275c6.626 -0.004 11.993 -5.372 11.993 -11.997C23.998 5.375 18.628 0 12 0zm2.431 4.94c2.015 0 3.917 1.543 3.917 3.671 0 0.197 0.001 0.395 -0.03 0.619a1.002 1.002 0 0 1 -1.137 0.893 1.002 1.002 0 0 1 -0.842 -1.175 2.61 2.61 0 0 0 0.013 -0.337c0 -1.207 -0.987 -1.672 -1.92 -1.672 -0.934 0 -1.775 0.784 -1.777 1.672 0.016 1.027 0 2.046 0 3.07l1.732 -0.012c1.352 -0.028 1.368 2.009 0.016 1.998l-1.748 0.013c-0.004 0.826 0.006 0.677 0.002 1.093 0 0 0.015 1.01 -0.016 1.776 -0.209 2.25 -2.124 4.046 -4.424 4.046 -2.438 0 -4.448 -1.993 -4.448 -4.437 0.073 -2.515 2.078 -4.492 4.603 -4.469l1.409 -0.01v1.996l-1.409 0.013h-0.007c-1.388 0.04 -2.577 0.984 -2.6 2.47a2.438 2.438 0 0 0 2.452 2.439c1.356 0 2.441 -0.987 2.441 -2.437l-0.001 -7.557c0 -0.14 0.005 -0.252 0.02 -0.407 0.23 -1.848 1.883 -3.256 3.754 -3.256z"/>
+  </g>
+
+  <!-- Right text: Fedora -->
+  <g fill="#fff" text-anchor="start" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110">
+    <text aria-hidden="true" x="1380" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="440">Fedora</text>
+    <text x="1380" y="140" transform="scale(.1)" fill="#fff" textLength="440">Fedora</text>
+  </g>
+</svg>
