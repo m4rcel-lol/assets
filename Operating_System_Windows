@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="193" height="20" role="img" aria-label="Operating System: Windows">
+  <title>Operating System: Windows</title>
+  <linearGradient id="s" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="r">
+    <rect width="193" height="20" rx="3" fill="#fff"/>
+  </clipPath>
+  <g clip-path="url(#r)">
+    <rect width="103" height="20" fill="#555"/>
+    <rect x="103" width="90" height="20" fill="#0078D6"/>
+    <rect width="193" height="20" fill="url(#s)"/>
+  </g>
+
+  <!-- Left text: Operating System -->
+  <g fill="#fff" text-anchor="middle" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110">
+    <text aria-hidden="true" x="515" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="900">Operating System</text>
+    <text x="515" y="140" transform="scale(.1)" fill="#fff" textLength="900">Operating System</text>
+  </g>
+
+  <!-- Windows logo -->
+  <g transform="translate(111,3) scale(0.0032)" fill="#fff">
+    <path d="M0 0h2311v2310H0zm2564 0h2311v2310H2564zM0 2564h2311v2311H0zm2564 0h2311v2311H2564"/>
+  </g>
+
+  <!-- Right text: Windows moved slightly right -->
+  <g fill="#fff" text-anchor="start" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110">
+    <text aria-hidden="true" x="1280" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="450">Windows</text>
+    <text x="1280" y="140" transform="scale(.1)" fill="#fff" textLength="450">Windows</text>
+  </g>
+</svg>
