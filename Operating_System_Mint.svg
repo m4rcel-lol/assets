@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20" role="img" aria-label="Operating System: Mint">
+  <title>Operating System: Mint</title>
+  <linearGradient id="s" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="r">
+    <rect width="200" height="20" rx="3" fill="#fff"/>
+  </clipPath>
+  <g clip-path="url(#r)">
+    <rect width="110" height="20" fill="#555"/>
+    <rect x="110" width="90" height="20" fill="#87b04b"/> <!-- Mint green -->
+    <rect width="200" height="20" fill="url(#s)"/>
+  </g>
+
+  <!-- Left text: Operating System -->
+  <g fill="#fff" text-anchor="middle" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110">
+    <text aria-hidden="true" x="550" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="900">Operating System</text>
+    <text x="550" y="140" transform="scale(.1)" fill="#fff" textLength="900">Operating System</text>
+  </g>
+
+  <!-- Mint logo, scaled and placed at start of green section -->
+  <g transform="translate(120,2) scale(0.8)" fill="#fff" stroke="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 2h15a7 7 0 0 1 7 7v11a2 2 0 0 1 -2 2H11a7 7 0 0 1 -7 -7V8a2 2 0 0 0 -2 -2H1V2Zm5.75 3v10a3.75 3.75 0 0 0 3.75 3.75H17A3.75 3.75 0 0 0 20.75 15V9.75a3 3 0 0 0 -5.25 -1.984 3 3 0 0 0 -5.25 1.984v4.75h1.5V9.75a1.5 1.5 0 0 1 3 0v4.75h1.5V9.75a1.5 1.5 0 0 1 3 0V15A2.25 2.25 0 0 1 17 17.25h-6.5A2.25 2.25 0 0 1 8.25 15V5h-1.5Z"/>
+  </g>
+
+  <!-- Right text: Mint -->
+  <g fill="#fff" text-anchor="start" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" text-rendering="geometricPrecision" font-size="110" letter-spacing="-2">
+    <text aria-hidden="true" x="1400" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="280">Mint</text>
+    <text x="1400" y="140" transform="scale(.1)" fill="#fff" textLength="280">Mint</text>
+  </g>
+</svg>
