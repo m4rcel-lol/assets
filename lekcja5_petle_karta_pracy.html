@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lekcja 5: Wszystkie typy pętli w JavaScript</title>
+    <link rel="stylesheet" href="style_lekcja5.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔄 Lekcja 5: Wszystkie typy pętli</h1>
+            <p class="subtitle">JavaScript - while, do...while, for...of, forEach</p>
+        </header>
+
+        <!-- PRZYPOMNIENIE FOR -->
+        <section class="section">
+            <h2>📌 Przypomnienie: Pętla FOR (Lekcja 4)</h2>
+            
+            <div class="info-box">
+                <p>To już znamy! Pętla FOR używana gdy znamy liczbę iteracji:</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Składnia pętli FOR:</div>
+                <pre><code>for (inicjalizacja; warunek; krok) {
+    // kod do wykonania
+}</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład:</div>
+                <pre><code>for (let i = 0; i &lt; 5; i++) {
+    console.log("Iteracja: " + i);
+}
+// Wynik: 0, 1, 2, 3, 4</code></pre>
+            </div>
+
+            <div class="highlight-box">
+                <strong>✅ Kiedy używać FOR:</strong>
+                <ul>
+                    <li>Znasz dokładną liczbę iteracji</li>
+                    <li>Potrzebujesz indeksu (i)</li>
+                    <li>Iterujesz po tablicy z modyfikacją</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PĘTLA WHILE -->
+        <section class="section">
+            <h2>🔄 Pętla WHILE - sprawdź POTEM wykonaj</h2>
+            
+            <div class="info-box">
+                <p><strong>WHILE</strong> wykonuje kod dopóki warunek jest prawdziwy. Sprawdza warunek <strong>PRZED</strong> każdą iteracją.</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Składnia:</div>
+                <pre><code>while (warunek) {
+    // kod do wykonania
+    // PAMIĘTAJ: zmień warunek żeby pętla się skończyła!
+}</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 1 - Podstawowe liczenie:</div>
+                <pre><code>let i = 0;
+while (i &lt; 5) {
+    console.log(i);
+    i++;  // WAŻNE: zwiększ licznik!
+}
+// Wynik: 0, 1, 2, 3, 4</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 2 - Losowanie dopóki nie trafisz:</div>
+                <pre><code>let wylosowana = 0;
+let proby = 0;
+
+while (wylosowana !== 6) {
+    wylosowana = Math.floor(Math.random() * 6) + 1;
+    proby++;
+    console.log("Próba " + proby + ": " + wylosowana);
+}
+
+console.log("Wylosowano 6 po " + proby + " próbach!");</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 3 - Gra: Zgadywanie liczby:</div>
+                <pre><code>let tajnaLiczba = 42;
+let odpowiedz = 0;
+let proby = 0;
+
+while (odpowiedz !== tajnaLiczba) {
+    odpowiedz = parseInt(prompt("Zgadnij liczbę (1-100):"));
+    proby++;
+    
+    if (odpowiedz &lt; tajnaLiczba) {
+        alert("Za mało!");
+    } else if (odpowiedz > tajnaLiczba) {
+        alert("Za dużo!");
+    }
+}
+
+alert("Brawo! Zgadłeś po " + proby + " próbach!");</code></pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ UWAGA: Nieskończona pętla!</strong>
+                <pre><code>// ❌ BŁĄD - pętla nigdy się nie skończy!
+let i = 0;
+while (i &lt; 5) {
+    console.log(i);
+    // Brak i++! Pętla w nieskończoność!
+}
+
+// ✅ POPRAWNIE:
+let i = 0;
+while (i &lt; 5) {
+    console.log(i);
+    i++;  // Zwiększamy licznik!
+}</code></pre>
+            </div>
+
+            <div class="highlight-box">
+                <strong>✅ Kiedy używać WHILE:</strong>
+                <ul>
+                    <li>Nie wiesz ile będzie iteracji</li>
+                    <li>Warunek jest złożony</li>
+                    <li>Czekasz aż coś się stanie (np. losowanie)</li>
+                    <li>Walidacja danych wejściowych</li>
+                    <li>Gry i symulacje</li>
+                </ul>
+            </div>
+
+            <div class="exercise-box">
+                <strong>✏️ Ćwiczenie 1:</strong> Napisz pętlę while która liczy od 10 do 1 (odliczanie).
+            </div>
+        </section>
+
+        <!-- PĘTLA DO...WHILE -->
+        <section class="section">
+            <h2>🔁 Pętla DO...WHILE - wykonaj POTEM sprawdź</h2>
+            
+            <div class="info-box">
+                <p><strong>DO...WHILE</strong> wykonuje kod <strong>MINIMUM RAZ</strong>, a dopiero potem sprawdza warunek.</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Składnia:</div>
+                <pre><code>do {
+    // kod do wykonania (ZAWSZE minimum raz)
+} while (warunek);</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 1 - Różnica między while a do...while:</div>
+                <pre><code>// WHILE - może się w ogóle nie wykonać
+let i = 10;
+while (i &lt; 5) {
+    console.log("To się NIE wyświetli!");
+}
+
+// DO...WHILE - wykona się MINIMUM RAZ
+let j = 10;
+do {
+    console.log("To się wyświetli MIMO ŻE j >= 5!");
+} while (j &lt; 5);</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 2 - Menu programu:</div>
+                <pre><code>let wybor;
+
+do {
+    console.log("=== MENU ===");
+    console.log("1. Dodaj zadanie");
+    console.log("2. Pokaż zadania");
+    console.log("3. Usuń zadanie");
+    console.log("0. Wyjście");
+    
+    wybor = parseInt(prompt("Wybierz opcję:"));
+    
+    if (wybor === 1) {
+        console.log("Dodaję zadanie...");
+    } else if (wybor === 2) {
+        console.log("Pokazuję zadania...");
+    } else if (wybor === 3) {
+        console.log("Usuwam zadanie...");
+    }
+    
+} while (wybor !== 0);
+
+console.log("Do widzenia!");</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 3 - Walidacja z minimum jednym pytaniem:</div>
+                <pre><code>let liczba;
+
+do {
+    liczba = parseFloat(prompt("Podaj liczbę dodatnią:"));
+    
+    if (liczba &lt;= 0) {
+        alert("To nie jest liczba dodatnia! Spróbuj ponownie.");
+    }
+} while (liczba &lt;= 0);
+
+console.log("Podano poprawną liczbę: " + liczba);</code></pre>
+            </div>
+
+            <div class="highlight-box">
+                <strong>✅ Kiedy używać DO...WHILE:</strong>
+                <ul>
+                    <li>Kod musi wykonać się MINIMUM RAZ</li>
+                    <li>Menu, które zawsze się pokazuje</li>
+                    <li>Walidacja - zapytaj przynajmniej raz</li>
+                    <li>Powtarzanie akcji aż użytkownik potwierdzi</li>
+                </ul>
+            </div>
+
+            <div class="exercise-box">
+                <strong>✏️ Ćwiczenie 2:</strong> Napisz do...while które pyta o hasło dopóki nie będzie miało min 8 znaków.
+            </div>
+        </section>
+
+        <!-- PĘTLA FOR...OF -->
+        <section class="section">
+            <h2>📦 Pętla FOR...OF - iteruj po wartościach</h2>
+            
+            <div class="info-box">
+                <p><strong>FOR...OF</strong> iteruje bezpośrednio po wartościach tablicy. Nie potrzebujesz indeksu!</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Składnia:</div>
+                <pre><code>for (let element of tablica) {
+    // element to kolejna wartość z tablicy
+}</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 1 - Porównanie FOR vs FOR...OF:</div>
+                <pre><code>let owoce = ["jabłko", "banan", "gruszka"];
+
+// Stary sposób - FOR z indeksem
+for (let i = 0; i &lt; owoce.length; i++) {
+    console.log(owoce[i]);
+}
+
+// Nowy sposób - FOR...OF (prostszy!)
+for (let owoc of owoce) {
+    console.log(owoc);
+}
+
+// Oba dają ten sam wynik:
+// jabłko
+// banan
+// gruszka</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 2 - Obliczanie sumy:</div>
+                <pre><code>let ceny = [10, 25, 30, 15];
+let suma = 0;
+
+for (let cena of ceny) {
+    suma += cena;
+}
+
+console.log("Suma: " + suma + " zł"); // 80 zł</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 3 - Filtrowanie (wypisz tylko oceny >= 4):</div>
+                <pre><code>let oceny = [5, 3, 4, 2, 6, 4];
+
+console.log("Dobre oceny:");
+for (let ocena of oceny) {
+    if (ocena >= 4) {
+        console.log(ocena);
+    }
+}
+// Wynik: 5, 4, 6, 4</code></pre>
+            </div>
+
+            <div class="comparison-box">
+                <h3>🔍 Kiedy FOR a kiedy FOR...OF?</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <strong>✅ Użyj FOR jeśli:</strong>
+                        <ul>
+                            <li>Potrzebujesz indeksu (i)</li>
+                            <li>Modyfikujesz tablicę</li>
+                            <li>Generujesz HTML z numerami</li>
+                            <li>Przeskakujesz elementy (i += 2)</li>
+                        </ul>
+                        <pre><code>// Przykład - potrzebujemy numeru
+for (let i = 0; i &lt; uczniowie.length; i++) {
+    console.log((i+1) + ". " + uczniowie[i]);
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <strong>✅ Użyj FOR...OF jeśli:</strong>
+                        <ul>
+                            <li>Iterujesz po wartościach</li>
+                            <li>NIE potrzebujesz indeksu</li>
+                            <li>Prostsze, czytelniejsze</li>
+                            <li>NIE modyfikujesz tablicy</li>
+                        </ul>
+                        <pre><code>// Przykład - tylko wartości
+for (let uczen of uczniowie) {
+    console.log("Witaj " + uczen);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ FOR...OF nie modyfikuje tablicy:</strong>
+                <pre><code>let liczby = [1, 2, 3];
+
+// ❌ To NIE zmieni oryginalnej tablicy!
+for (let liczba of liczby) {
+    liczba = liczba * 2;
+}
+console.log(liczby); // [1, 2, 3] - bez zmian!
+
+// ✅ Użyj FOR z indeksem:
+for (let i = 0; i &lt; liczby.length; i++) {
+    liczby[i] = liczby[i] * 2;
+}
+console.log(liczby); // [2, 4, 6] - zmienione!</code></pre>
+            </div>
+
+            <div class="exercise-box">
+                <strong>✏️ Ćwiczenie 3:</strong> Użyj for...of aby wypisać wszystkie oceny i obliczyć średnią.
+            </div>
+        </section>
+
+        <!-- PĘTLA FOREACH -->
+        <section class="section">
+            <h2>🎯 Metoda forEach() - funkcja dla każdego elementu</h2>
+            
+            <div class="info-box">
+                <p><strong>forEach()</strong> to metoda tablicy, która wykonuje funkcję dla każdego elementu. Daje dostęp do wartości, indeksu i całej tablicy.</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Składnia:</div>
+                <pre><code>tablica.forEach(function(element, indeks, tablica) {
+    // element - wartość
+    // indeks - pozycja (opcjonalnie)
+    // tablica - cała tablica (opcjonalnie)
+});</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 1 - Podstawowe użycie:</div>
+                <pre><code>let owoce = ["jabłko", "banan", "gruszka"];
+
+owoce.forEach(function(owoc) {
+    console.log("Lubię " + owoc);
+});
+
+// Wynik:
+// Lubię jabłko
+// Lubię banan
+// Lubię gruszka</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 2 - Z indeksem:</div>
+                <pre><code>let uczniowie = ["Anna", "Bartek", "Czarek"];
+
+uczniowie.forEach(function(uczen, indeks) {
+    console.log((indeks + 1) + ". " + uczen);
+});
+
+// Wynik:
+// 1. Anna
+// 2. Bartek
+// 3. Czarek</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 3 - Generowanie HTML:</div>
+                <pre><code>let produkty = ["Laptop", "Mysz", "Klawiatura"];
+let html = "";
+
+produkty.forEach(function(produkt, indeks) {
+    html += "&lt;li&gt;Produkt " + (indeks + 1) + ": " + produkt + "&lt;/li&gt;";
+});
+
+document.getElementById('lista').innerHTML = html;</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Przykład 4 - Arrow function (nowoczesna składnia):</div>
+                <pre><code>let liczby = [1, 2, 3, 4, 5];
+
+// Tradycyjna funkcja
+liczby.forEach(function(liczba) {
+    console.log(liczba * 2);
+});
+
+// Arrow function (krótsza)
+liczby.forEach(liczba => {
+    console.log(liczba * 2);
+});
+
+// Jeszcze krócej (jedna linia)
+liczby.forEach(liczba => console.log(liczba * 2));</code></pre>
+            </div>
+
+            <div class="highlight-box">
+                <strong>✅ Kiedy używać forEach:</strong>
+                <ul>
+                    <li>Wykonujesz akcję dla KAŻDEGO elementu</li>
+                    <li>Potrzebujesz wartości i indeksu</li>
+                    <li>Nowoczesny, czytelny kod</li>
+                    <li>Generowanie HTML z numeracją</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ forEach vs for...of - różnice:</strong>
+                <ul>
+                    <li><strong>forEach</strong> - NIE można przerwać (break/continue nie działa)</li>
+                    <li><strong>for...of</strong> - MOŻNA użyć break i continue</li>
+                </ul>
+                <pre><code>// ❌ BREAK nie działa w forEach
+let liczby = [1, 2, 3, 4, 5];
+liczby.forEach(liczba => {
+    if (liczba === 3) {
+        break; // BŁĄD! Nie można przerwać forEach
+    }
+    console.log(liczba);
+});
+
+// ✅ BREAK działa w for...of
+for (let liczba of liczby) {
+    if (liczba === 3) {
+        break; // OK! Przerwie pętlę
+    }
+    console.log(liczba);
+}</code></pre>
+            </div>
+
+            <div class="exercise-box">
+                <strong>✏️ Ćwiczenie 4:</strong> Użyj forEach aby wyświetlić listę zadań z numerami i przyciskami "Usuń".
+            </div>
+        </section>
+
+        <!-- PORÓWNANIE WSZYSTKICH PĘTLI -->
+        <section class="section">
+            <h2>📊 PORÓWNANIE - która pętla kiedy?</h2>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pętla</th>
+                            <th>Kiedy używać</th>
+                            <th>Przykład</th>
+                            <th>Egzamin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>FOR</strong></td>
+                            <td>
+                                • Znasz liczbę iteracji<br>
+                                • Potrzebujesz indeksu<br>
+                                • Modyfikujesz tablicę
+                            </td>
+                            <td><code>for (let i=0; i&lt;10; i++)</code></td>
+                            <td>⭐⭐⭐⭐⭐<br>90%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FOR...OF</strong></td>
+                            <td>
+                                • Iteracja po wartościach<br>
+                                • NIE potrzebujesz indeksu<br>
+                                • Czytasz dane
+                            </td>
+                            <td><code>for (let x of tab)</code></td>
+                            <td>⭐⭐⭐<br>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>WHILE</strong></td>
+                            <td>
+                                • Nie wiesz ile iteracji<br>
+                                • Warunek złożony<br>
+                                • Gry, losowania
+                            </td>
+                            <td><code>while (x &lt; 100)</code></td>
+                            <td>⭐⭐<br>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DO...WHILE</strong></td>
+                            <td>
+                                • Minimum JEDNO wykonanie<br>
+                                • Menu, walidacja<br>
+                                • Pytaj aż user potwierdzi
+                            </td>
+                            <td><code>do {...} while(x)</code></td>
+                            <td>⭐<br>10%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>forEach</strong></td>
+                            <td>
+                                • Akcja dla każdego<br>
+                                • Potrzebujesz wartości + indeks<br>
+                                • Nowoczesny kod
+                            </td>
+                            <td><code>tab.forEach(x => ...)</code></td>
+                            <td>⭐⭐<br>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="decision-tree">
+                <h3>🌳 Drzewo decyzyjne - którą pętlę wybrać?</h3>
+                <div class="tree">
+                    <div class="tree-node">
+                        <strong>START: Potrzebujesz pętli?</strong>
+                        <div class="tree-branch">
+                            <div class="tree-question">Czy wiesz ile razy?</div>
+                            <div class="tree-yes">
+                                <strong>TAK</strong>
+                                <div class="tree-question">Potrzebujesz indeksu?</div>
+                                <div class="tree-yes">TAK → <code>FOR</code></div>
+                                <div class="tree-no">NIE → <code>FOR...OF</code> lub <code>forEach</code></div>
+                            </div>
+                            <div class="tree-no">
+                                <strong>NIE</strong>
+                                <div class="tree-question">Musi wykonać się min 1 raz?</div>
+                                <div class="tree-yes">TAK → <code>DO...WHILE</code></div>
+                                <div class="tree-no">NIE → <code>WHILE</code></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAJCZĘSTSZE BŁĘDY -->
+        <section class="section">
+            <h2>⚠️ Najczęstsze błędy uczniów</h2>
+            
+            <div class="error-box">
+                <h3>BŁĄD 1: Nieskończona pętla while</h3>
+                <pre><code>// ❌ BŁĄD
+let i = 0;
+while (i &lt; 5) {
+    console.log(i);
+    // Brak i++ - pętla w nieskończoność!
+}
+
+// ✅ POPRAWNIE
+let i = 0;
+while (i &lt; 5) {
+    console.log(i);
+    i++;  // Pamiętaj zwiększyć!
+}</code></pre>
+            </div>
+
+            <div class="error-box">
+                <h3>BŁĄD 2: Próba modyfikacji w for...of</h3>
+                <pre><code>// ❌ BŁĄD - to nie zmieni tablicy!
+let liczby = [1, 2, 3];
+for (let liczba of liczby) {
+    liczba = liczba * 2;  // Zmienia tylko lokalną zmienną!
+}
+
+// ✅ POPRAWNIE - użyj FOR z indeksem
+for (let i = 0; i &lt; liczby.length; i++) {
+    liczby[i] = liczby[i] * 2;
+}</code></pre>
+            </div>
+
+            <div class="error-box">
+                <h3>BŁĄD 3: Mylenie while z do...while</h3>
+                <pre><code>// WHILE - może się NIE wykonać
+let x = 10;
+while (x &lt; 5) {
+    console.log("Nie wyświetli się!");
+}
+
+// DO...WHILE - wykona się MINIMUM RAZ
+let y = 10;
+do {
+    console.log("Wyświetli się mimo że y >= 5!");
+} while (y &lt; 5);</code></pre>
+            </div>
+
+            <div class="error-box">
+                <h3>BŁĄD 4: Break w forEach (nie działa!)</h3>
+                <pre><code>// ❌ BŁĄD - break nie działa w forEach
+[1,2,3].forEach(x => {
+    if (x === 2) break;  // BŁĄD!
+});
+
+// ✅ POPRAWNIE - użyj for...of
+for (let x of [1,2,3]) {
+    if (x === 2) break;  // OK!
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- PODSUMOWANIE -->
+        <section class="section">
+            <h2>📝 Podsumowanie</h2>
+            
+            <div class="summary-box">
+                <h3>Czego się nauczyłeś:</h3>
+                <ul>
+                    <li>✅ Pętla <strong>WHILE</strong> - sprawdza przed, używaj gdy nie wiesz ile iteracji</li>
+                    <li>✅ Pętla <strong>DO...WHILE</strong> - wykonuje minimum raz, idealna do menu</li>
+                    <li>✅ Pętla <strong>FOR...OF</strong> - iteruje po wartościach, prostsza niż FOR</li>
+                    <li>✅ Metoda <strong>forEach</strong> - nowoczesna, z dostępem do indeksu</li>
+                    <li>✅ Kiedy której pętli użyć - drzewo decyzyjne</li>
+                    <li>✅ Najczęstsze błędy i jak ich unikać</li>
+                </ul>
+            </div>
+
+            <div class="next-steps">
+                <h3>🎯 Następne kroki:</h3>
+                <p>Teraz wykonaj <strong>zadanie samodzielne</strong>: Kalkulator z menu</p>
+                <p>Użyjesz: do...while (menu), while (walidacja), for...of (historia)</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
