@@ -1,46 +1,3 @@
-# =============================================================
-#  CALCULATOR.IPC — Interactive Calculator written in IPcode
-# =============================================================
-#
-#  USAGE (enter at each prompt):
-#    OP>  — type 1 (add), 2 (sub), 3 (mul), 4 (div), 0 (exit)
-#    A>   — first integer operand
-#    B>   — second integer operand
-#    Result printed as "= <value>"
-#
-#  Registers:
-#    R0  = operation choice
-#    R1  = operand A
-#    R2  = operand B
-#    R3  = result
-#    R9  = temporary for comparisons
-#    R10 = character buffer for PRINTC
-#
-#  Executable line map (comments/blank lines NOT counted):
-#    Line  1–13  BANNER: print "IPCALC\n"
-#    Line 14–20  MAIN LOOP: print "OP>\n"
-#    Line 21     INPUTI R0
-#    Line 22–24  exit check: op==0 → JT 76 (HALT)
-#    Line 25–29  print "A>\n"
-#    Line 30     INPUTI R1
-#    Line 31–35  print "B>\n"
-#    Line 36     INPUTI R2
-#    Line 37–39  dispatch: op==1 → JT 56 (ADD)
-#    Line 40–42  dispatch: op==2 → JT 59 (SUB)
-#    Line 43–45  dispatch: op==3 → JT 62 (MUL)
-#    Line 46–48  dispatch: op==4 → JT 65 (DIV)
-#    Line 49–55  ERR: unknown op → print "ERR\n", JMP 14
-#    Line 56–58  ADD: R3 = R1 + R2, JMP 68
-#    Line 59–61  SUB: R3 = R1 - R2, JMP 68
-#    Line 62–64  MUL: R3 = R1 * R2, JMP 68
-#    Line 65–67  DIV: R3 = R1 / R2, JMP 68
-#    Line 68–75  PRINT_RESULT: "= R3\n\n", JMP 14
-#    Line 76     HALT
-# =============================================================
-
-# --- BANNER: print "IPCALC\n" (lines 1–13) ------------------
-# ASCII: I=73 P=80 C=67 A=65 L=76 C=67
-
 1.0.10.73    # [line  1] LOAD R10, 73   ('I')
 6.1.10.0     # [line  2] PRINTC R10
 1.0.10.80    # [line  3] LOAD R10, 80   ('P')
@@ -55,9 +12,6 @@
 6.1.10.0     # [line 12] PRINTC R10
 6.3.0.0      # [line 13] PRINTLN
 
-# --- MAIN LOOP: starts at line 14 ---------------------------
-# Print "OP>\n"  ASCII: O=79 P=80 >=62
-
 1.0.10.79    # [line 14] LOAD R10, 79   ('O')
 6.1.10.0     # [line 15] PRINTC R10
 1.0.10.80    # [line 16] LOAD R10, 80   ('P')
@@ -66,15 +20,11 @@
 6.1.10.0     # [line 19] PRINTC R10
 6.3.0.0      # [line 20] PRINTLN
 
-# Read operation choice into R0
 6.4.0.0      # [line 21] INPUTI R0
 
-# Exit check: if R0 == 0, jump to HALT at line 76
 1.0.9.0      # [line 22] LOAD R9, 0
 4.1.0.9      # [line 23] EQ R0, R9      FLAGS = (R0 == 0)
 5.1.0.76     # [line 24] JT 76          jump to HALT if op is 0
-
-# Print "A>\n"  ASCII: A=65 >=62
 
 1.0.10.65    # [line 25] LOAD R10, 65   ('A')
 6.1.10.0     # [line 26] PRINTC R10
@@ -82,10 +32,7 @@
 6.1.10.0     # [line 28] PRINTC R10
 6.3.0.0      # [line 29] PRINTLN
 
-# Read first operand into R1
 6.4.1.0      # [line 30] INPUTI R1
-
-# Print "B>\n"  ASCII: B=66 >=62
 
 1.0.10.66    # [line 31] LOAD R10, 66   ('B')
 6.1.10.0     # [line 32] PRINTC R10
@@ -93,33 +40,23 @@
 6.1.10.0     # [line 34] PRINTC R10
 6.3.0.0      # [line 35] PRINTLN
 
-# Read second operand into R2
 6.4.2.0      # [line 36] INPUTI R2
 
-# --- DISPATCH: branch on R0 to the correct operation --------
-
-# op == 1 → ADD at line 56
 1.0.9.1      # [line 37] LOAD R9, 1
 4.1.0.9      # [line 38] EQ R0, R9
 5.1.0.56     # [line 39] JT 56
 
-# op == 2 → SUB at line 59
 1.0.9.2      # [line 40] LOAD R9, 2
 4.1.0.9      # [line 41] EQ R0, R9
 5.1.0.59     # [line 42] JT 59
 
-# op == 3 → MUL at line 62
 1.0.9.3      # [line 43] LOAD R9, 3
 4.1.0.9      # [line 44] EQ R0, R9
 5.1.0.62     # [line 45] JT 62
 
-# op == 4 → DIV at line 65
 1.0.9.4      # [line 46] LOAD R9, 4
 4.1.0.9      # [line 47] EQ R0, R9
 5.1.0.65     # [line 48] JT 65
-
-# --- ERR: unrecognised op — print "ERR\n", loop back --------
-# ASCII: E=69 R=82
 
 1.0.10.69    # [line 49] LOAD R10, 69   ('E')
 6.1.10.0     # [line 50] PRINTC R10
@@ -129,30 +66,21 @@
 6.3.0.0      # [line 54] PRINTLN
 5.0.0.14     # [line 55] JMP 14         restart MAIN LOOP
 
-# --- ADD: R3 = R1 + R2 (lines 56–58) -----------------------
 1.3.3.1      # [line 56] MOV R3, R1     R3 = R1
 2.0.3.2      # [line 57] ADD R3, R2     R3 = R3 + R2
 5.0.0.68     # [line 58] JMP 68         go to PRINT_RESULT
 
-# --- SUB: R3 = R1 - R2 (lines 59–61) -----------------------
 1.3.3.1      # [line 59] MOV R3, R1
 2.1.3.2      # [line 60] SUB R3, R2     R3 = R3 - R2
 5.0.0.68     # [line 61] JMP 68
 
-# --- MUL: R3 = R1 * R2 (lines 62–64) -----------------------
 1.3.3.1      # [line 62] MOV R3, R1
 2.2.3.2      # [line 63] MUL R3, R2     R3 = R3 * R2
 5.0.0.68     # [line 64] JMP 68
 
-# --- DIV: R3 = R1 / R2 (lines 65–67) -----------------------
-# VM raises division-by-zero error if R2 == 0
 1.3.3.1      # [line 65] MOV R3, R1
 2.3.3.2      # [line 66] DIV R3, R2     R3 = R3 / R2
 5.0.0.68     # [line 67] JMP 68
-
-# --- PRINT_RESULT (lines 68–75) -----------------------------
-# Print "= <R3>\n" then a blank line, then loop back
-# ASCII: ==61  space=32
 
 1.0.10.61    # [line 68] LOAD R10, 61   ('=')
 6.1.10.0     # [line 69] PRINTC R10
@@ -163,5 +91,4 @@
 6.3.0.0      # [line 74] PRINTLN        blank separator
 5.0.0.14     # [line 75] JMP 14         restart MAIN LOOP
 
-# --- HALT (line 76) — reached only when op == 0 -------------
 0.1.0.0      # [line 76] HALT
